@@ -242,37 +242,37 @@ public:
 
 	enSaveResults Save()
 	{
-		switch (_Mode)
-		{
-		case enMode::EmptyMode:
-		{
-			return enSaveResults::svFaildEmptyObject;
-		}
-
-		case enMode::UpdateMode:
-		{
-			_Update();
-
-			return enSaveResults::svSucceeded;
-			break;
-		}
-
-		case enMode::AddNewMode:
-		{
-			if (clsBankClient::IsClientExist(_AccountNumber))
+			switch (_Mode)
 			{
-				return enSaveResults::svFaildAccountNumberExists;
+			case enMode::EmptyMode:
+			{
+				return enSaveResults::svFaildEmptyObject;
 			}
-			else
+
+			case enMode::UpdateMode:
 			{
-				_AddNew();
-				// we need to set the mode to update after add new
-				_Mode = enMode::UpdateMode;
+				_Update();
+				
 				return enSaveResults::svSucceeded;
+				break;
 			}
 
-			break;
-		}
+			case enMode::AddNewMode:
+			{
+				if (clsBankClient::IsClientExist(_AccountNumber))
+				{
+					return enSaveResults::svFaildAccountNumberExists;
+				}
+				else
+				{
+					_AddNew();
+					// we need to set the mode to update after add new
+					_Mode = enMode::UpdateMode;
+					return enSaveResults::svSucceeded;
+				}
+
+				break;
+			}
 		}
 	}
 
@@ -313,6 +313,25 @@ public:
 	static vector <clsBankClient> GetClientsList()
 	{
 		return _LoadClientsDataFromFile();
+	}
+
+	void Deposit(double Amount)
+	{
+		_AccountBalance += Amount;
+		Save();
+	}
+
+	bool Withdraw(double Amount)
+	{
+		if (Amount > _AccountBalance)
+		{
+			return false;
+		}
+		else
+		{
+			_AccountBalance -= Amount;
+			Save();
+		}
 	}
 
 	static float GetTotalBalances()
