@@ -25,6 +25,7 @@ public:
 		_Day = now->tm_mday;
 		_Month = now->tm_mon + 1;
 		_Year = now->tm_year + 1900;
+
 	}
 
 	clsDate(string sDate)
@@ -96,13 +97,36 @@ public:
 		time_t t = time(0);
 		tm* now = localtime(&t);
 
-		short Day, Month, Year;
+		short Day, Month, Year, Hour, Minutes, Seconds;
 
 		Year = now->tm_year + 1900;
 		Month = now->tm_mon + 1;
 		Day = now->tm_mday;
 
+
 		return clsDate(Day, Month, Year);
+	}
+
+	static string GetSystemDateTimeString()
+	{
+		//system datetime string
+		time_t t = time(0);
+		tm* now = localtime(&t);
+
+		short Day, Month, Year, Hour, Minute, Second;
+
+		Year = now->tm_year + 1900;
+		Month = now->tm_mon + 1;
+		Day = now->tm_mday;
+		Hour = now->tm_hour;
+		Minute = now->tm_min;
+		Second = now->tm_sec;
+
+		return (to_string(Day) + "/" + to_string(Month) + "/"
+			+ to_string(Year) + " - "
+			+ to_string(Hour) + ":" + to_string(Minute)
+			+ ":" + to_string(Second));
+
 	}
 
 	static	bool IsValidDate(clsDate Date)

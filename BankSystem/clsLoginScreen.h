@@ -3,6 +3,7 @@
 #include "clsScreen.h"
 #include "clsUser.h"
 #include <iomanip>
+#include <fstream>
 #include "clsMainScreen.h"
 #include "Global.h"
 
@@ -48,9 +49,11 @@ private:
 
 		} while (LoginFaild);
 
+		CurrentUser.RegisterLogIn();
 		clsMainScreen::ShowMainMenue();
 		return true;
 	}
+
 
 public:
 
