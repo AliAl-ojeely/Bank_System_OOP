@@ -1,11 +1,24 @@
 #include <iostream>
+#include <iomanip>
 #include "clsInputValidate.h"
 #include "clsBankClient.h"
 #include "clsUtil.h"
 #include "clsMainScreen.h"
-#include <iomanip>
+#include "clsLoginScreen.h"
 
 using namespace std;
+
+
+int main()
+{
+
+	while (true)
+	{
+		clsLoginScreen::ShowLoginScreen();
+	}
+
+	return 0;
+}
 
 //void ReadClientInfo(clsBankClient& Client)
 //{
@@ -234,10 +247,3 @@ using namespace std;
 //	cout << "\t\t\t\t\t   ( " << clsUtil::NumberToText(TotalBalances) << ")";
 //
 //}
-
-int main()
-{
-	clsMainScreen::ShowMainMenue();
-	system("pause>0");
-	return 0;
-}

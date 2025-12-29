@@ -73,7 +73,7 @@ private:
         cin >> Answer;
         if (Answer == 'y' || Answer == 'Y')
         {
-            Permissions += clsUser::enPermissions::pAddNewLient;
+            Permissions += clsUser::enPermissions::pAddNewCLient;
         }
 
         cout << "\nDelete Client? y/n? ";
