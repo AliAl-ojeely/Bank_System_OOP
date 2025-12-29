@@ -21,6 +21,20 @@ private:
 
 	bool _MarkedForDeleted = false;
 
+	struct stLoginRegisterRecord;
+	static stLoginRegisterRecord _ConvertLoginRegisterLineToRecord(string Line, string Seperator = "#//#")
+	{
+		stLoginRegisterRecord LoginRegisterRecord;
+
+		vector <string> LoginRegisterDataLine = clsString::Split(Line, Seperator);
+		LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
+		LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
+		LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+		LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
+
+		return LoginRegisterRecord;
+	}
+
 	string _PrepareLogInRecord(string Seperator = "#//#")
 	{
 		string LoginRecord = "";
@@ -147,7 +161,16 @@ public:
 
 	enum enPermissions {
 		eAll = -1, pListClients = 1, pAddNewCLient = 2, pDeleteClient = 4,
-		pUpdateClients = 8, pFindClient = 16, pTranactions = 32, pManageUsers = 64
+		pUpdateClients = 8, pFindClient = 16, pTranactions = 32, pManageUsers = 64,
+		pShowLogInRegister = 128,
+	};
+
+	struct stLoginRegisterRecord
+	{
+		string DateTime;
+		string UserName;
+		string Password;
+		int Permissions;
 	};
 
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName,
@@ -360,6 +383,31 @@ public:
 
 			MyFile.close();
 		}
+	}
+
+	static vector <stLoginRegisterRecord> GetLoginRegisterList()
+	{
+		vector <stLoginRegisterRecord> vLoginRegisterRecord;
+
+		fstream MyFile;
+		MyFile.open("LoginRegister.txt", ios::in); // read mode
+
+		if (MyFile.is_open())
+		{
+			string Line;
+
+			stLoginRegisterRecord LoginRegisterRecord;
+
+			while (getline(MyFile, Line))
+			{
+				LoginRegisterRecord = _ConvertLoginRegisterLineToRecord(Line);
+				vLoginRegisterRecord.push_back(LoginRegisterRecord);
+			}
+
+			MyFile.close();
+		}
+
+		return vLoginRegisterRecord;
 	}
 
 };

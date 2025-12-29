@@ -54,7 +54,6 @@ private:
 		return true;
 	}
 
-
 public:
 
 	static bool ShowLoginScreen()
