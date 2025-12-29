@@ -101,8 +101,5 @@
     <ClInclude Include="clsLoginScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="clsListClientScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

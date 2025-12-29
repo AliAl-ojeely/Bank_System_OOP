@@ -12,6 +12,7 @@ private:
 
 	static void PrintClientRecordLine(clsBankClient Client)
 	{
+
 		cout << setw(8) << left << "" << "| " << setw(15) << left << Client.AccountNumber();
 		cout << "| " << setw(20) << left << Client.FullName();
 		cout << "| " << setw(12) << left << Client.Phone;
@@ -24,6 +25,10 @@ public:
 
 	static void ShowClientList()
 	{
+		if (!CheckAccessRights(clsUser::enPermissions::pListClients))
+		{
+			return; // this will exit the function and it will not continue
+		}
 		vector <clsBankClient> vClients = clsBankClient::GetClientsList();
 		string Title = "\t  Client List Screen";
 		string SubTitle = "\t    (" + to_string(vClients.size()) + ") Client(s).";
