@@ -2,6 +2,7 @@
 #include <iostream>
 #include "clsScreen.h"
 #include "clsUser.h"
+#include "clsUtil.h"
 #include "clsInputValidate.h"
 #include <iomanip>
 
