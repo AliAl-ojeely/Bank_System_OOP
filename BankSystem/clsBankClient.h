@@ -43,8 +43,8 @@ private:
 
 		return stClientRecord;
 	}
+
 	struct stTransferLogRecord;
-	
 	static stTransferLogRecord _ConvertRegisterTransferLogLineToRecord(string Line, string Seperator = "#//#")
 	{
 		stTransferLogRecord TransferLogRegisterRecord;
@@ -292,7 +292,7 @@ public:
 			while (getline(MyFile, Line))
 			{
 				clsBankClient Client = _ConvertLineToClientObject(Line);
-				if (Client.AccountNumber() == AccountNumber && Client.PinCode == PinCode);
+				if (Client.AccountNumber() == AccountNumber && Client.PinCode == PinCode)
 				{
 					MyFile.close();
 					return Client;
