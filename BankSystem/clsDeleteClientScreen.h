@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "clsScreen.h"
-#include "clsPeriod.h"
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
 
@@ -55,8 +54,6 @@ public:
 
         if (Answer == 'y' || Answer == 'Y')
         {
-
-
             if (Client1.Delete())
             {
                 cout << "\nClient Deleted Successfully :-)\n";
