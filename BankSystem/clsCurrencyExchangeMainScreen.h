@@ -6,6 +6,7 @@
 #include "clsCurrency.h"
 #include "clsCurrenciesListScreen.h"
 #include "clsFindCurrencyScreen.h"
+#include "clsUpdateCurrencyRateScreen.h"
 
 class clsCurrencyExchangeMainScreen : protected clsScreen
 {
@@ -38,7 +39,8 @@ private:
 
 	static void _ShowUpdateCurrencyRateScreen()
 	{
-		cout << "\nUpdate Rate Screen Will be here soon...\n";
+		/*cout << "\nUpdate Rate Screen Will be here soon...\n";*/
+		clsUpdateCurrencyRateScreen::ShowUpdateCurrencyScreen();
 	}
 
 	static void _ShowCurrencyCalculatorScreen()
