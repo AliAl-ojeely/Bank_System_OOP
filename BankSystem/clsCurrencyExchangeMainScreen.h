@@ -4,8 +4,10 @@
 #include "clsInputValidate.h"
 #include "clsScreen.h"
 #include "clsCurrency.h"
+#include "clsCurrenciesListScreen.h"
+#include "clsFindCurrencyScreen.h"
 
-class clsCurrencyExchangeScreen : protected clsScreen
+class clsCurrencyExchangeMainScreen : protected clsScreen
 {
 private:
 	
@@ -24,15 +26,17 @@ private:
 
 	static void _ShowListCurrenciesScreen()
 	{
-		cout << "\nList Currencies Screen will be here soon...\n";
+		/*cout << "\nList Currencies Screen will be here soon...\n";*/
+		clsCurrenciesListScreen::ShowCurrencyList();
 	}
 
 	static void _ShowFindCurrencyScreen()
 	{
-		cout << "\nFind Currince Screen Will be here soon...\n";
+		/*cout << "\nFind Currince Screen Will be here soon...\n";*/
+		clsFindCurrencyScreen::ShowFindCurrencyScreen();
 	}
 
-	static void _ShowUpdateRateScreen()
+	static void _ShowUpdateCurrencyRateScreen()
 	{
 		cout << "\nUpdate Rate Screen Will be here soon...\n";
 	}
@@ -42,14 +46,14 @@ private:
 		cout << "\nCurrency Calculator Screen will be here soon...\n";
 	}
 
-	static void _GoBackToCurrencyMenue()
+	static void _GoBackToCurrenciesMenue()
 	{
 		cout << "\n\nPress any key to back to Currency Menue...";
 		system("pause>0");
 		ShowCurrencyMainMenue();
 	}
 
-	static void _PerformCurrencyExchangeMenueOption(enCurrencyExchangeMenueOptions CurrencyExchangeMenueOptions)
+	static void _PerformCurrenciesMainMenueOptions(enCurrencyExchangeMenueOptions CurrencyExchangeMenueOptions)
 	{
 		switch (CurrencyExchangeMenueOptions)
 		{
@@ -57,7 +61,7 @@ private:
 			{
 				system("cls");
 				_ShowListCurrenciesScreen();
-				_GoBackToCurrencyMenue();
+				_GoBackToCurrenciesMenue();
 				break;
 			}
 
@@ -65,15 +69,15 @@ private:
 			{
 				system("cls");
 				_ShowFindCurrencyScreen();
-				_GoBackToCurrencyMenue();
+				_GoBackToCurrenciesMenue();
 				break;
 			}
 
 			case enCurrencyExchangeMenueOptions::eUpdateRate:
 			{
 				system("cls");
-				_ShowUpdateRateScreen();
-				_GoBackToCurrencyMenue();
+				_ShowUpdateCurrencyRateScreen();
+				_GoBackToCurrenciesMenue();
 				break;
 			}
 
@@ -81,7 +85,7 @@ private:
 			{
 				system("cls");
 				_ShowCurrencyCalculatorScreen();
-				_GoBackToCurrencyMenue();
+				_GoBackToCurrenciesMenue();
 				break;
 			}
 
@@ -109,7 +113,7 @@ public:
 		cout << setw(37) << left << "" << "\t[5] Main Menue.\n";
 		cout << setw(37) << left << "" << "===========================================\n";
 
-		_PerformCurrencyExchangeMenueOption((enCurrencyExchangeMenueOptions)ReadCurrencyExchangeMenueOption());
+		_PerformCurrenciesMainMenueOptions((enCurrencyExchangeMenueOptions)ReadCurrencyExchangeMenueOption());
 	}
 
 };
