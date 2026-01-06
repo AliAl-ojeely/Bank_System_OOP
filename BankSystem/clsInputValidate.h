@@ -9,27 +9,7 @@ class clsInputValidate
 
 public:
 
-	// overloading concept
-	static bool IsNumberBetween(short Number, short From, short To)
-	{
-		if (Number >= From && Number <= To)
-			return true;
-		else
-			return false;
-	}
-
-	// overloading concept
-	static bool IsNumberBetween(int Number, int From, int To)
-	{
-		if (Number >= From && Number <= To)
-			return true;
-		else
-			return false;
-
-	}
-
-	// overloading concept
-	static bool IsNumberBetween(double Number, double From, double To)
+	template<typename T> static T IsNumberBetween(T Number, T From, T To)
 	{
 		if (Number >= From && Number <= To)
 			return true;
@@ -60,9 +40,10 @@ public:
 		return false;
 	}
 
-	static short ReadShortNumber(string ErrorMessage = "Invalid Number, Enter again\n")
+	template<typename T> static T ReadNumber(string ErrorMessage = "Invalid Number, Enter again\n")
 	{
-		short Number;
+		T Number;
+
 		while (!(cin >> Number))
 		{
 			cin.clear();
@@ -73,86 +54,16 @@ public:
 		return Number;
 	}
 
-	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again\n")
+	template<typename T> static T ReadNumberBetween(T From, T To, string ErrorMessage = "Number is not within range, Enter again:\n")
 	{
-		int Number;
-		while (!(cin >> Number)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
+		T Number = ReadNumber<T>();
 
-	static short ReadShortNumberBetween(short From, short To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		short Number = ReadShortNumber();
-
-		while (!IsNumberBetween(Number, From, To))
+		while (!IsNumberBetween<bool>(Number, From, To))
 		{
 			cout << ErrorMessage;
-			Number = ReadShortNumber();
+			Number = ReadNumber<T>();
 		}
-		return Number;
-	}
 
-	static int ReadIntNumberBetween(int From, int To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		int Number = ReadIntNumber();
-
-		while (!IsNumberBetween(Number, From, To))
-		{
-			cout << ErrorMessage;
-			Number = ReadIntNumber();
-		}
-		return Number;
-	}
-
-	// overloading concept
-	static double ReadFloatNumber(string ErrorMessage = "Invalid Number, Enter again\n")
-	{
-		float Number;
-		while (!(cin >> Number)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
-
-	// overloading concept
-	static double ReadFloatNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		float Number = ReadFloatNumber();
-
-		while (!IsNumberBetween(Number, From, To)) {
-			cout << ErrorMessage;
-			Number = ReadFloatNumber();
-		}
-		return Number;
-	}
-
-	// overloading concept
-	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Enter again\n")
-	{
-		double Number;
-		while (!(cin >> Number)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
-
-	// overloading concept
-	static double ReadDblNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		double Number = ReadDblNumber();
-
-		while (!IsNumberBetween(Number, From, To)) {
-			cout << ErrorMessage;
-			Number = ReadDblNumber();
-		}
 		return Number;
 	}
 
